@@ -1,6 +1,7 @@
 package com.example.dagligvarer.order.model;
 
 
+import com.example.dagligvarer.delivery.Delivery;
 import com.example.dagligvarer.product.model.Product;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,9 +22,14 @@ public class Order {
     @JoinColumn(name = "product_id",referencedColumnName = "id",nullable = false)
     private Product product;
 
-    public Order(Integer quantity, Product product) {
+    @ManyToOne
+    @JoinColumn(name = "delivery_id",referencedColumnName = "id",nullable = false)
+    private Delivery delivery;
+
+    public Order(Integer quantity, Product product,Delivery delivery) {
         this.quantity = quantity;
         this.product = product;
+        this.delivery = delivery;
     }
 
 

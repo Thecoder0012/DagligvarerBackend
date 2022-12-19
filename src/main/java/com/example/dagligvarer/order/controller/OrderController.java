@@ -16,7 +16,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-
     @GetMapping
     private ResponseEntity<List<Order>> findAll() {
         return ResponseEntity.ok().body(orderService.findAll());
