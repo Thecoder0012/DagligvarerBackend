@@ -1,5 +1,7 @@
 package com.example.dagligvarer.product.controller;
 
+import com.example.dagligvarer.dto.ProductDto;
+import com.example.dagligvarer.factory.DtoFactory;
 import com.example.dagligvarer.product.model.Product;
 import com.example.dagligvarer.product.service.ProductService;
 import lombok.AllArgsConstructor;
@@ -15,16 +17,17 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final DtoFactory dtoFactory;
 
 
     @GetMapping
-    private ResponseEntity<List<Product>> findAll() {
-        return ResponseEntity.ok().body(productService.findAll());
+    private ResponseEntity<List<ProductDto>> findAll() {
+        return ResponseEntity.ok().body(dtoFactory.fromProducts(productService.findAll()));
     }
 
     @PostMapping
-    public ResponseEntity<Product> save(@RequestBody Product product){
-        return ResponseEntity.ok().body(productService.save(product));
+    public ResponseEntity<ProductDto> save(@RequestBody Product product){
+        return ResponseEntity.ok().body(dtoFactory.fromProduct(productService.save(product)));
     }
 
     @DeleteMapping("/{id}")
@@ -33,16 +36,16 @@ public class ProductController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id) {
-        return ResponseEntity.ok().body(productService.update(product, id));
+    public ResponseEntity<ProductDto> update(@RequestBody Product product, @PathVariable Long id) {
+        return ResponseEntity.ok().body(dtoFactory.fromProduct(productService.update(product, id)));
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Product> findById(@PathVariable Long id){
-        return ResponseEntity.ok().body(productService.findById(id));
+    public ResponseEntity<ProductDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(dtoFactory.fromProduct(productService.findById(id)));
     }
     @GetMapping("/name/{name}")
-    public ResponseEntity<Product> findByName(@PathVariable String name){
-        return ResponseEntity.ok().body(productService.findByName(name));
+    public ResponseEntity<ProductDto> findByName(@PathVariable String name){
+        return ResponseEntity.ok().body(dtoFactory.fromProduct(productService.findByName(name)));
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dagligvarer.delivery;
+package com.example.dagligvarer.delivery.model;
 
 import com.example.dagligvarer.order.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +18,6 @@ public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDateTime deliveryDate;
     private String wareHouse;
     private String destination;

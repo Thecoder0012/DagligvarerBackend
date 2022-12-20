@@ -1,5 +1,7 @@
-package com.example.dagligvarer.delivery;
+package com.example.dagligvarer.delivery.service;
 
+import com.example.dagligvarer.delivery.model.Delivery;
+import com.example.dagligvarer.delivery.repository.DeliveryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

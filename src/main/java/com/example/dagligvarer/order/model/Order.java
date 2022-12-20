@@ -1,7 +1,7 @@
 package com.example.dagligvarer.order.model;
 
 
-import com.example.dagligvarer.delivery.Delivery;
+import com.example.dagligvarer.delivery.model.Delivery;
 import com.example.dagligvarer.product.model.Product;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +15,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer quantity;
 
     @ManyToOne
